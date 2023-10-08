@@ -19,8 +19,7 @@ const LoginForm = () => {
             setCredError(true);
             return;
         }
-
-        await axios.post('http://localhost:8080/auth/login', {
+        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
             username: username,
             password: password,
             email: email
@@ -34,7 +33,7 @@ const LoginForm = () => {
                 //TODO: push to error page
             }
         }).catch((err) => {
-            console.log(err);
+            console.log("login error : ",err);
         });
     }
 

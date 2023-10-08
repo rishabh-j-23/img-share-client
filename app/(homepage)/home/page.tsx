@@ -32,14 +32,14 @@ export default function Home() {
 
   useEffect(() => {
     var token = localStorage.getItem('sessionToken');
-    axios.get(`http://localhost:8080/user?token=${token}`).then(res => {
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user?token=${token}`).then(res => {
       setSharedImages(res.data['sharedImages']);
     }).catch(err => console.log(err))
 
   }, [])
 
   useEffect(() => {
-    axios.get('http://localhost:8080/images').then((res) => {
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/images`).then((res) => {
       setSharedImages(res.data);
       console.log(res.data);
     }).catch(err => console.log("get all images error", err))

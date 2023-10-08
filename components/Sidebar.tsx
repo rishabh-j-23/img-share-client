@@ -17,7 +17,7 @@ const SideBar: React.FC<SideBarProps> = ({
 
     useEffect(() => {
         var token = localStorage.getItem('sessionToken');
-        axios.get(`http://localhost:8080/user?token=${token}`).then(res => {
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user?token=${token}`).then(res => {
             setUsername(res.data['username']);
             setEmail(res.data['email']);
         }).catch(err => console.log(err))

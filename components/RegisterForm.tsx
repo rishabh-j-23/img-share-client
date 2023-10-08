@@ -18,7 +18,7 @@ const RegisterForm = () => {
             setCredError(true);
             return;
         }
-        await axios.post('http://localhost:8080/auth/register', {
+        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, {
             username: username,
             email: email,
             password: password

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import pic from '@/public/placeholder/placeholder-image.jpg'
+
 type ImgBoxProps = {
     image: string,
     uploadedBy: string,

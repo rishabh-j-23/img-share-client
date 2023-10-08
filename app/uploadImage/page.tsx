@@ -30,7 +30,7 @@ const UploadImage = () => {
 
     useEffect(() => {
         var token = localStorage.getItem('sessionToken');
-        axios.get(`http://localhost:8080/user?token=${token}`).then(res => {
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user?token=${token}`).then(res => {
             setuserObjectId(res.data['_id']);
             setUsername(res.data['username']);
         }).catch(err => console.log(err))
@@ -42,7 +42,7 @@ const UploadImage = () => {
             uploadedBy: userObjectId,
             imageData: image
         });
-        await axios.post('http://localhost:8080/image/upload', {
+        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/image/upload`, {
             postName: imageTitle,
             uploadedBy: userObjectId,
             imageData: image,

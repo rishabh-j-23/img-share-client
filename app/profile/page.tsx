@@ -20,7 +20,7 @@ const ProfilePage = () => {
 
     useEffect(() => {
         var token = localStorage.getItem('sessionToken');
-        axios.get(`http://localhost:8080/user?token=${token}`).then(res => {
+        axios.get(`${process.env.API_URL}/user?token=${token}`).then(res => {
             setUsername(res.data['username']);
             setEmail(res.data['email']);
         }).catch(err => console.log(err))
@@ -29,7 +29,7 @@ const ProfilePage = () => {
     useEffect(() => {
         // Fetch user's shared images only when `username` is available
         if (username) {
-            axios.get(`http://localhost:8080/image/user?username=${username}`).then((res) => {
+            axios.get(`${process.env.NEXT_PUBLIC_API_URL}/image/user?username=${username}`).then((res) => {
                 setUserSharedImages(res.data);
                 console.log(res.data, username)
             }).catch(err => console.log(err));
