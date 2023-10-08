@@ -25,3 +25,10 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.sibebar-li-style {
+  padding: 5px;
+  padding-left: 4px;
+  padding-right: 4px;
+  cursor: pointer;
+}
