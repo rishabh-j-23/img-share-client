@@ -19,7 +19,7 @@ const LoginForm = () => {
             setCredError(true);
             return;
         }
-        await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
+        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
             username: username,
             password: password,
             email: email
