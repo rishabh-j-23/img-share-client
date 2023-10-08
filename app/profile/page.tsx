@@ -37,6 +37,7 @@ const ProfilePage = () => {
                 <h2 className="p-4 bold text-lg">Images Shared</h2>
                 <div className="flex flex-wrap">
                     {
+                        userSharedImages.length === 0 ? <div className="text-center w-full p-10">No Images Shared</div> :
                         userSharedImages.map((image) => {
                             return <ImgBox key={image._id} image={image.imageData} uploadedBy={image.username} postName={image.postName} />
                         })
