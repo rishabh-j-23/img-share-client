@@ -5,6 +5,14 @@ import ImgBox from "@/components/ImgBox";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+type Image = {
+    _id: string,
+    imageData: string,
+    uploadedBy: string,
+    postName: string,
+    username: string
+}
+
 const ProfilePage = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -38,7 +46,7 @@ const ProfilePage = () => {
                 <div className="flex flex-wrap">
                     {
                         userSharedImages.length === 0 ? <div className="text-center w-full p-10">No Images Shared</div> :
-                        userSharedImages.map((image) => {
+                        userSharedImages.map((image: Image) => {
                             return <ImgBox key={image._id} image={image.imageData} uploadedBy={image.username} postName={image.postName} />
                         })
                     }
