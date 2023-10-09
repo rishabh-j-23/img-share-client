@@ -19,7 +19,7 @@ const LoginForm = () => {
             setCredError(true);
             return;
         }
-        await axios.post(`https://img-share.up.railway.app//auth/login`, {
+        await axios.post(`https://img-share.up.railway.app/auth/login`, {
             username: username,
             password: password,
             email: email
