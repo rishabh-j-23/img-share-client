@@ -43,7 +43,7 @@ const ProfilePage = () => {
             </div>
             <div className="border-r-2 border-l-2 border-b-2 mt-4 rounded-lg">
                 <h2 className="p-4 bold text-lg">Images Shared</h2>
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap p-4">
                     {
                         userSharedImages.length === 0 ? <div className="text-center w-full p-10">No Images Shared</div> :
                         userSharedImages.map((image: Image) => {

@@ -34,6 +34,7 @@ export default function Home() {
     var token = localStorage.getItem('sessionToken');
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user?token=${token}`).then(res => {
       setSharedImages(res.data['sharedImages']);
+      setSharedImages
     }).catch(err => console.log(err))
 
   }, [])
@@ -52,8 +53,9 @@ export default function Home() {
       </div>
       <div className='p-6 flex w-full h-full ml-3'>
         <div className='flex flex-wrap w-full h-80'>
-          {
-            sharedImages.map((image: Image) => {
+          { 
+            sharedImages.length == 0 ? <div className='flex items-center justify-center h-full w-full'>Loading....</div> :
+            sharedImages.toReversed().map((image: Image) => {
               return <ImgBox key={image._id} image={image.imageData} uploadedBy={image.uploadedBy.username} postName={image.postName}/>
             })
           }
