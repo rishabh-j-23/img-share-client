@@ -1,7 +1,8 @@
 'use client';
 
 import ImgBox from '@/components/ImgBox'
-import SideBar from '@/components/Sidebar'
+import MobileNavBar from '@/components/navbar/MobileNavBar';
+import SideBar from '@/components/navbar/Sidebar'
 import axios from 'axios';
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
@@ -34,7 +35,6 @@ export default function Home() {
     var token = localStorage.getItem('sessionToken');
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user?token=${token}`).then(res => {
       setSharedImages(res.data['sharedImages']);
-      setSharedImages
     }).catch(err => console.log(err))
 
   }, [])
@@ -42,25 +42,32 @@ export default function Home() {
   useEffect(() => {
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/images`).then((res) => {
       setSharedImages(res.data);
-      console.log(res.data);
     }).catch(err => console.log("get all images error", err))
   }, [])
 
   return (
-    <div className='h-screen flex'>
-      <div className='w-[180px] h-full'>
-        <SideBar sessionToken={sessionToken} />
-      </div>
-      <div className='p-6 flex w-full h-full ml-3'>
-        <div className='flex flex-wrap w-full h-80'>
-          { 
-            sharedImages.length == 0 ? <div className='flex items-center justify-center h-full w-full'>Loading....</div> :
-            sharedImages.toReversed().map((image: Image) => {
-              return <ImgBox key={image._id} image={image.imageData} uploadedBy={image.uploadedBy.username} postName={image.postName}/>
-            })
-          }
+    <>
+      <div className='h-screen flex w-screen '>
+        <div className='lg:w-[180px] lg:h-full lg:block hidden '>
+          <SideBar sessionToken={sessionToken} />
+        </div>
+        <div className='sm:block lg:hidden '>
+          <MobileNavBar />
+        </div>
+        <div className='flex w-full h-full lg:ml-3 lg:p-6 '>
+          <div className='flex flex-wrap w-full h-80 '>
+            {
+              sharedImages.length == 0 ? <div className='flex items-center justify-center h-full w-full'>Loading....</div> :
+                sharedImages.toReversed().map((image: Image) => {
+                  return (
+                    <ImgBox key={image._id} image={image.imageData} uploadedBy={image.uploadedBy.username} postName={image.postName} />
+                  )
+                })
+            }
+            <div className='pb-20 lg:pb-0 lg:hidden sm:block opacity-0'>Mobile Nav Padding</div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

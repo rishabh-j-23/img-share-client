@@ -11,7 +11,7 @@ const ImgBox: React.FC<ImgBoxProps> = ({
 }) => {
 
     return (
-        <div className="w-72 bg-gray-600 rounded-md flex flex-col items-center p-3 m-2 overflow-clip">
+        <div className="lg:w-72 bg-gray-600 rounded-md flex flex-col items-center p-3 m-0 my-2 overflow-clip lg:m-2">
             
             <div className="w-full h-full">
                 <Image

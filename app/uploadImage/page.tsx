@@ -5,7 +5,7 @@ import Image from "next/image";
 import pic from '@/public/placeholder/placeholder-image.jpg'
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import SideBar from "@/components/Sidebar";
+import SideBar from "@/components/navbar/Sidebar";
 
 const UploadImage = () => {
     const [image, setImage] = useState<string | undefined>('');

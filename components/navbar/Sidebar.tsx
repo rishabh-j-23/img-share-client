@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import Avatar from "./Avatar";
+import Avatar from "../Avatar";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
@@ -65,7 +65,7 @@ const SideBar: React.FC<SideBarProps> = ({
                 </ul>
             </div>
             <div>
-                <Avatar username={username} email={email} logoutBtn={true}/>
+                <Avatar username={username} email={email} logoutBtn={true} />
             </div>
 
         </div>

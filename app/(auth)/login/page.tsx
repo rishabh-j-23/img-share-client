@@ -9,7 +9,7 @@ const Login = () => {
     return (
 
         <div className='h-screen flex items-center justify-center '>
-            <div className='border-solid border-white  bg-slate-50 border-l rounded-md'>
+            <div className='border-solid border-white  bg-slate-50 border-l rounded-md m-[3%] w-2/5'>
                 <LoginForm />
             </div>
         </div>
