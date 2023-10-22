@@ -1,13 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LoginForm from '@/components/LoginForm';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import RegisterForm from '@/components/RegisterForm';
 
 const Authpage = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const router = useRouter();
+
+    useEffect(() => {
+        var token = localStorage.getItem('sessionToken');
+        if(token){
+            redirect('/home');
+        }
+    }, []);
+
     return (
         <div className='h-screen flex items-center justify-center mx-[3%]'>
             <div className='border-solid border-white  bg-slate-50 border-l rounded-md text-black text-center p-10 '>
