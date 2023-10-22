@@ -1,9 +1,6 @@
 'use client';
 
 import LoginForm from "@/components/LoginForm";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 const Login = () => {
     return (

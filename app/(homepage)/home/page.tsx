@@ -1,11 +1,12 @@
 'use client';
 
 import ImgBox from '@/components/ImgBox'
+import MobileHeader from '@/components/MobileHeader';
 import MobileNavBar from '@/components/navbar/MobileNavBar';
 import SideBar from '@/components/navbar/Sidebar'
 import axios from 'axios';
 import Image from 'next/image'
-import { usePathname, useRouter } from 'next/navigation'
+import { redirect, usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react';
 
 type Image = {
@@ -26,10 +27,10 @@ export default function Home() {
   useEffect(() => {
     var token = !localStorage.getItem('sessionToken') ? '' : localStorage.getItem('sessionToken');
     if (!token) {
-      router.push('/login');
+      redirect('/');
     }
     setSessionToken(token?.toString())
-  }, [setSessionToken, router])
+  }, [sessionToken])
 
   useEffect(() => {
     var token = localStorage.getItem('sessionToken');
@@ -47,14 +48,18 @@ export default function Home() {
 
   return (
     <>
-      <div className='h-screen flex w-screen '>
+      <div className='h-screen flex lg:flex-row flex-col w-full '>
         <div className='lg:w-[180px] lg:h-full lg:block hidden '>
           <SideBar sessionToken={sessionToken} />
+        </div>
+        <div className='lg:hidden sm:block opacity-0 pt-3'>Mobile Header Padding</div>
+        <div className='lg:hidden sm:block fixed w-screen'>
+          <MobileHeader />
         </div>
         <div className='sm:block lg:hidden '>
           <MobileNavBar />
         </div>
-        <div className='flex w-full h-full lg:ml-3 lg:p-6 '>
+        <div className='flex w-full h-full lg:ml-3 lg:p-6 bg-neutral-800'>
           <div className='flex flex-wrap w-full h-80 '>
             {
               sharedImages.length == 0 ? <div className='flex items-center justify-center h-full w-full'>Loading....</div> :

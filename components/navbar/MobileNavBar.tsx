@@ -1,4 +1,8 @@
 import Link from "next/link";
+import Button from "../ui/button/Button";
+import { AiOutlineHome, AiOutlineUser } from "react-icons/ai";
+import { TiUpload } from "react-icons/ti";
+import { HiOutlineSearchCircle } from "react-icons/hi";
 
 const MobileNavBar = () => {
     return (
@@ -8,19 +12,19 @@ const MobileNavBar = () => {
                 rounded-full
                 "
         >
-            <div className="flex p-2 items-center justify-around">
-                <div className="flex p-2 items-center justify-center border-r-gray-400 border-r pr-4
+            <div className="flex p-2 items-center justify-evenly text-center text-2xl">
+                <div className="flex p-2 items-center justify-center border-r-gray-400 
                 ">
-                    <Link href={'/profile'}>Profile</Link>
+                    <Link href={'/home'}><Button buttonIcon={<AiOutlineHome />}/></Link>
                 </div>
-                <div className="flex p-2 items-center justify-center border-r-gray-400 border-r pr-4 pl-0">
-                    <Link href={'/uploadImage'}>Upload</Link>
+                <div className="flex p-2 items-center justify-center border-r-gray-400 pl-0">
+                    <Link href={'/uploadImage'}> <Button buttonIcon={<TiUpload />}/></Link>
                 </div>
-                <div className="flex p-2 items-center justify-center border-r-gray-400 border-r pr-4 pl-0">
-                    <Link href={'/search'}>Search</Link>
+                <div className="flex p-2 items-center justify-center border-r-gray-400 pl-0">
+                    <Link href={'/profile'}><Button buttonIcon={<AiOutlineUser />}/></Link>
                 </div>
-                <div className="flex p-2 items-center justify-center ">
-                    <Link href={'/explore'}>Explore</Link>
+                <div className="flex p-2 items-center justify-center border-r-gray-400 pl-0">
+                    <Link href={'/search'}><Button buttonIcon={<HiOutlineSearchCircle />}/></Link>
                 </div>
             </div>
         </div>

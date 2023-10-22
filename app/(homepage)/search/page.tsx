@@ -35,10 +35,7 @@ const SearchPage = () => {
     }
 
     return (
-        <div className="h-screen flex flex-col">
-            <div className="left-0 fixed p-4 font-bold rounded-full hover:bg-gray-400 hover:cursor-pointer w-15 ml-12">
-                <button onClick={() => router.push('/home')}>&lt;</button>
-            </div>
+        <div className="h-screen flex flex-col lg:ml-[180px] sm:ml-0">
             <div className="flex justify-center ">
 
                 <input type="text" name="searchbar" id="searchbar"

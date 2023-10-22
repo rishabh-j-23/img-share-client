@@ -31,13 +31,12 @@ const ProfilePage = () => {
         if (username) {
             axios.get(`${process.env.NEXT_PUBLIC_API_URL}/image/user?username=${username}`).then((res) => {
                 setUserSharedImages(res.data);
-                console.log(res.data, username)
             }).catch(err => console.log(err));
         }
     }, [username]); // Add `username` as a dependency
 
     return (
-        <div className="h-screen m-3">
+        <div className="h-screen m-3 lg:ml-[180px]">
             <div className="border-t-2 border-b-2 rounded-md p-4">
                 <Avatar username={username} email={email} logoutBtn={false} />
             </div>
@@ -46,7 +45,7 @@ const ProfilePage = () => {
                 <div className="flex flex-wrap p-4">
                     {
                         userSharedImages.length === 0 ? <div className="text-center w-full p-10">No Images Shared</div> :
-                        userSharedImages.map((image: Image) => {
+                        userSharedImages.toReversed().map((image: Image) => {
                             return <ImgBox key={image._id} image={image.imageData} uploadedBy={image.username} postName={image.postName} />
                         })
                     }

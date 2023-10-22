@@ -2,6 +2,11 @@ import { useCallback, useEffect, useState } from "react";
 import Avatar from "../Avatar";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Logo from "../ui/Logo";
+import { AiOutlineHome, AiOutlineUser } from 'react-icons/ai';
+import { HiOutlineSearchCircle } from 'react-icons/hi';
+import { TiUpload } from 'react-icons/ti';
+import Button from "../ui/button/Button";
 
 type SideBarProps = {
     sessionToken?: string | undefined
@@ -28,39 +33,41 @@ const SideBar: React.FC<SideBarProps> = ({
             flex flex-col
             border-gray-50
             border-solid
-            bg-gray-900
+            bg-zinc-900
             h-full
             p-4
             items-center
             justify-between
             fixed
+            rounded-3xl
+            ml-1
         ">
             <div>
-                <h1 className="font-bold text-lg font-serif">
-                    Img Share
-                </h1>
+                <div>
+                    <Logo />
+                </div>
                 <ul className="p-2 inline-block py-9
                     items-center justify-center
                 ">
                     <li className="sibebar-li-style hover:bg-blue-500 rounded-full items-center text-center"
+                        onClick={() => router.push('/home')}
+                    >
+                        <Button buttonType="Home" buttonIcon={<AiOutlineHome />}/>
+                    </li>
+                    <li className="sibebar-li-style hover:bg-blue-500 rounded-full items-center text-center"
                         onClick={() => router.push('/profile')}
                     >
-                        Profile
+                        <Button buttonType="Profile" buttonIcon={<AiOutlineUser />}/>
                     </li>
                     <li className="sibebar-li-style hover:bg-blue-500 rounded-full items-center text-center"
                         onClick={() => router.push('/uploadImage')}
                     >
-                        Upload
+                        <Button buttonType="Upload" buttonIcon={<TiUpload />}/>
                     </li>
                     <li className="sibebar-li-style hover:bg-blue-500 rounded-full items-center text-center"
                         onClick={() => router.push('/search')}
                     >
-                        Search
-                    </li>
-                    <li className="sibebar-li-style hover:bg-blue-500 rounded-full items-center text-center"
-                        onClick={() => router.push('/explore')}
-                    >
-                        Explore
+                        <Button buttonType="Search" buttonIcon={<HiOutlineSearchCircle />}/>
                     </li>
                 </ul>
             </div>

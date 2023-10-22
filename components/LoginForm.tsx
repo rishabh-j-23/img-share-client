@@ -4,12 +4,6 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-type LoginFormProps = {
-    username: string,
-    password: string,
-
-}
-
 const LoginForm = () => {
 
     const [username, setUsername] = useState('');

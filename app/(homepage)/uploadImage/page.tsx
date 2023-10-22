@@ -12,6 +12,7 @@ const UploadImage = () => {
     const [imageTitle, setImageTitle] = useState('');
     const [userObjectId, setuserObjectId] = useState('');
     const [username, setUsername] = useState('');
+    const [uploaded, setUploaded] = useState<boolean | null>(null);
 
     const router = useRouter();
 
@@ -20,7 +21,6 @@ const UploadImage = () => {
 
         reader.readAsDataURL(e.target.files[0]);
         reader.onload = () => {
-            console.log(reader.result);
             setImage(reader.result?.toString());
         };
         reader.onerror = (err) => {
@@ -37,28 +37,23 @@ const UploadImage = () => {
     }, [])
 
     const handleUpload = async () => {
-        console.log({
-            postName: imageTitle,
-            uploadedBy: userObjectId,
-            imageData: image
-        });
         await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/image/upload`, {
             postName: imageTitle,
             uploadedBy: userObjectId,
             imageData: image,
             username: username
         }).then(res => {
-            console.log("uploaded ", res.data);
+            setUploaded(true);
             router.push('/home');
         }).catch(err => {
-            console.log("image upload error : ", err);
+            setUploaded(false)
         });
     }
 
     return (
         <div>
             <div className="flex flex-col items-center justify-center h-screen">
-                <div className="bg-gray-500 flex items-center justify-center flex-col p-10  rounded-lg">
+                <div className="bg-neutral-700 flex items-center justify-center flex-col p-10  rounded-lg sm:w-full sm:h-full lg:w-auto lg:h-auto">
                     <input className="sibebar-li-style px-8 m-2 mb-6 text-black bg-gray-400  rounded-lg flex items-center text-center"
                         accept="image/*"
                         type="file"
@@ -80,6 +75,19 @@ const UploadImage = () => {
                         <div className="p-2">
                             <span>Post Title : </span>
                             <input type="text" name="" id="" className="text-black rounded-2xl p-1 px-3" onChange={(e) => setImageTitle(e.target.value)} />
+                        </div>
+                        <div className="flex items-center justify-center">
+                            {
+                               !(uploaded === null) && (
+                                    uploaded ? 
+                                    <span className="text-green-500">
+                                        Post Uploaded!
+                                    </span> :
+                                    <span className="text-red-500">
+                                        Post Upload failed!
+                                    </span>
+                                )
+                            }
                         </div>
                         <div className="flex items-center justify-center">
                             <button type="submit" className="sibebar-li-style mt-8 text-black bg-gray-400 hover:bg-blue-500 rounded-full flex items-center text-center"
