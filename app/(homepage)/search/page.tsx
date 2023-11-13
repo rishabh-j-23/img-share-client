@@ -1,6 +1,6 @@
 'use client';
 
-import ImgBox from "@/components/ImgBox";
+import Post from "@/components/post/Post";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -26,7 +26,7 @@ const SearchPage = () => {
             return;
         }
         setSearching(true);
-        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/image/search?searchPost=${searchPost}`).then(res => {
+        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/image/search?searchPost=${searchPost}`, { headers: { sessionToken: localStorage.getItem('sessionToken') } }).then(res => {
             if (res.status == 200) {
                 setRelevantPosts(res.data);
             }
@@ -35,7 +35,7 @@ const SearchPage = () => {
     }
 
     return (
-        <div className="h-screen flex flex-col lg:ml-[180px] sm:ml-0">
+        <div className="h-screen flex flex-col sm:ml-0">
             <div className="flex justify-center ">
 
                 <input type="text" name="searchbar" id="searchbar"
@@ -60,7 +60,7 @@ const SearchPage = () => {
                 {
                     relevantPosts.length === 0 ? <div className="text-center w-full p-10">No post by that name</div> :
                         relevantPosts.map((post: Post) => {
-                            return <ImgBox key={post._id} image={post.imageData} uploadedBy={post.username} postName={post.postName} />
+                            return <Post id={post._id} key={post._id} image={post.imageData} uploadedBy={post.username} postName={post.postName} />
                         })
                 }
             </div>
