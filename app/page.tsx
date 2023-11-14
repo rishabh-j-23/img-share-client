@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { redirect, useRouter } from 'next/navigation';
-import ImageLogo from '@/components/ImageLogo';
+import ImageLogo from '@/components/ui/ImageLogo';
 
 const Authpage = () => {
     const router = useRouter();

@@ -14,7 +14,7 @@ const UploadImage = () => {
     const [username, setUsername] = useState('');
     const [uploaded, setUploaded] = useState<boolean | null>(null);
     const [isUploading, setIsUploading] = useState<boolean>(false);
-    
+
     const router = useRouter()
 
     const convertToBase64 = (e: any) => {
@@ -59,7 +59,7 @@ const UploadImage = () => {
         } catch (err) {
             console.error('Error uploading post:', err);
             setUploaded(false);
-            router.push('/uploadImage');
+            router.push('/upload');
         }
         setIsUploading(false);
     };

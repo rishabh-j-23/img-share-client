@@ -5,6 +5,7 @@ import Tag from "./Tag";
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { BiDotsVerticalRounded } from 'react-icons/bi';
 
 type PostProps = {
     id: string;
@@ -41,12 +42,20 @@ const Post: React.FC<PostProps> = ({
         >
             <div className="w-full h-[auto] lg:flex lg:flex-row lg:justify-between">
                 <div className="flex flex-col mb-2">
-                    {/* posted by user */}
-                    <div className="text-xs flex items-center">
-                        <span>
-                            <Tag name="user" />
-                        </span>
-                        <span className="text-sm p-1">{uploadedBy}</span>
+                    {/* user and 3 dot menu */}
+                    <div className='flex justify-between items-center'>
+                        <div>
+                            {/* posted by user */}
+                            <div className="text-xs flex items-center">
+                                <span>
+                                    <Tag name="user" />
+                                </span>
+                                <span className="text-sm p-1">{uploadedBy}</span>
+                            </div>
+                        </div>
+                        <div className='text-lg lg:hidden block'>
+                            <BiDotsVerticalRounded />
+                        </div>
                     </div>
                     {/* post name */}
                     <div className="">

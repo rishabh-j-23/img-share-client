@@ -1,12 +1,14 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+
 import Avatar from "../user/Avatar";
+import Logo from "../ui/Logo";
+import Button from "../ui/button/Button";
+
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import Logo from "../ui/Logo";
-import { AiOutlineHome, AiOutlineUser } from 'react-icons/ai';
-import { HiOutlineSearchCircle } from 'react-icons/hi';
+import { AiOutlineHome, AiOutlineSearch, AiOutlineUser } from 'react-icons/ai';
 import { TiUpload } from 'react-icons/ti';
-import Button from "../ui/button/Button";
+
 
 type SideBarProps = {
     sessionToken?: string | undefined
@@ -61,14 +63,14 @@ const SideBar: React.FC<SideBarProps> = ({
                         <Button buttonType="Profile" buttonIcon={<AiOutlineUser />} />
                     </li>
                     <li className="sibebar-li-style hover:bg-blue-500 rounded-full items-center text-center"
-                        onClick={() => router.push('/uploadImage')}
+                        onClick={() => router.push('/upload')}
                     >
                         <Button buttonType="Upload" buttonIcon={<TiUpload />} />
                     </li>
                     <li className="sibebar-li-style hover:bg-blue-500 rounded-full items-center text-center"
                         onClick={() => router.push('/search')}
                     >
-                        <Button buttonType="Search" buttonIcon={<HiOutlineSearchCircle />} />
+                        <Button buttonType="Search" buttonIcon={<AiOutlineSearch />} />
                     </li>
                 </ul>
             </div>

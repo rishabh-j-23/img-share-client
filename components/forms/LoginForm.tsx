@@ -4,7 +4,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import ImageLogo from "../ImageLogo";
+import ImageLogo from "../ui/ImageLogo";
 
 const LoginForm = () => {
 

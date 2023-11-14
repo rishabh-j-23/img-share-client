@@ -22,7 +22,7 @@ const HomeLayout = ({
     }, [sessionToken])
 
     return (
-        <div className="bg-neutral-800">
+        <div className="">
             <div className='lg:w-[180px] lg:h-full lg:block hidden '>
                 <SideBar sessionToken={sessionToken} />
             </div>

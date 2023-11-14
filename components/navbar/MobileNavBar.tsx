@@ -16,7 +16,7 @@ const MobileNavBar = () => {
                     <Link href={'/home'}><Button buttonIcon={<AiOutlineHome />} /></Link>
                 </div>
                 <div className="flex p-2 items-center justify-center border-r-gray-400">
-                    <Link href={'/uploadImage'}> <Button buttonIcon={<TiUpload />} /></Link>
+                    <Link href={'/upload'}> <Button buttonIcon={<TiUpload />} /></Link>
                 </div>
                 <div className="flex p-2 items-center justify-center border-r-gray-400">
                     <Link href={'/profile'}><Button buttonIcon={<AiOutlineUser />} /></Link>
