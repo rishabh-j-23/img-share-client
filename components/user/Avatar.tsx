@@ -21,10 +21,12 @@ const Avatar: React.FC<AvatarProps> = ({ username, email, logoutBtn }) => {
 
   return (
     <div className="flex flex-col hover:cursor-pointer text-white justify-center items-center">
-      <div className="flex items-center justify-center">
-        <Tag name="user" />
-        <span className="text-sm"><b className="text-base">{username}</b></span>
-      </div>
+      {username &&
+        <div className="flex items-center justify-center">
+          <Tag name="user" />
+          <span className="text-sm"><b className="text-base">{username}</b></span>
+        </div>
+      }
       <div>
         {logoutBtn && <button className="border-solid border-white border-2 p-1 mt-6 rounded-full m-1 hover:bg-blue-500"
           onClick={handleLogout}

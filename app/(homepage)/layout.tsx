@@ -14,10 +14,7 @@ const HomeLayout = ({
     const [sessionToken, setSessionToken] = useState<string | undefined>('');
 
     useEffect(() => {
-        var token = !localStorage.getItem('sessionToken') ? '' : localStorage.getItem('sessionToken');
-        if (!token) {
-            redirect('/');
-        }
+        var token = !localStorage.getItem('sessionToken') ? null : localStorage.getItem('sessionToken');
         setSessionToken(token?.toString())
     }, [sessionToken])
 

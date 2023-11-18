@@ -1,10 +1,10 @@
 'use client';
 
-import Post from "@/components/post/Post";
 import Tag from "@/components/post/Tag";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { BounceLoader } from "react-spinners";
 
 const PostPage = ({ params }: { params: { id: string } }) => {
 
@@ -12,21 +12,34 @@ const PostPage = ({ params }: { params: { id: string } }) => {
     const [username, setUsername] = useState('');
     const [postName, setPostName] = useState('');
     const [description, setPostDescription] = useState('');
+    const [fadeIn, setFadeIn] = useState(false);
+    const [loading, setLoading] = useState(false);
+
 
     useEffect(() => {
+        setLoading(true);
+
         axios.get(`${process.env.NEXT_PUBLIC_API_URL}/image/id?id=${params.id}`, { headers: { sessionToken: localStorage.getItem('sessionToken') } })
             .then((res) => {
-                setImage(res.data.imageData);
-                setUsername(res.data.username);
-                setPostName(res.data.postName);
-                setPostDescription(res.data.description);
+                setLoading(false);
+                const { imageData, username, postName, description } = res.data;
+                setImage(imageData);
+                setUsername(username);
+                setPostName(postName);
+                setPostDescription(description);
+                setFadeIn(true);
             });
     }, [params.id]);
 
     return (
-        <div className="h-full" >
-            <div className="p-5 ">
-                <div className="shadow-xl w-auto">
+        <div className="h-screen" >
+            {loading &&
+                <div className="flex items-center justify-center p-[20%]">
+                    <BounceLoader color={'#fff'} loading={loading} size={35}/>
+                </div>
+            }
+            <div className={` rounded-lg p-5 shadow-xl w-auto transition-opacity duration-300 ${fadeIn ? "opacity-100" : "opacity-0"}`}>
+                <div className="w-auto">
                     <div>
                         <div className="text-sm flex items-center">
                             <Tag name="user" />
@@ -38,19 +51,19 @@ const PostPage = ({ params }: { params: { id: string } }) => {
                                 <span className="text-2xl mt-2 mb-3">{postName}</span>
                             </div>
                         </div>
-                        <div className="flex items-center">
-                            <div className="p-2 lg:w-[1000px]">
-                                <span className="text-md mt-2 mb-3 ">{description}</span>
+                        {description && (
+                            <div className="flex items-center">
+                                <div className="p-2 lg:w-[1000px]">
+                                    <span className="text-md mt-2 mb-3 ">{description}</span>
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </div>
-                    <Image
-                        src={image}
-                        width={900}
-                        height={900}
-                        alt="Post image"
-                        className="p-2"
-                    />
+                    {image && (
+                        <Image src={image} width={900} height={900} alt="Post image" loading="lazy"
+                            className="p-2"
+                        />
+                    )}
 
                 </div>
             </div>

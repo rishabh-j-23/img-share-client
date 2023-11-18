@@ -4,9 +4,8 @@ import Post from '@/components/post/Post'
 
 import axios from 'axios';
 import Image from 'next/image'
-import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react';
-import { ClipLoader } from 'react-spinners';
+import { BounceLoader } from 'react-spinners';
 import { CSSProperties } from 'react';
 
 type Image = {
@@ -26,29 +25,27 @@ const override: CSSProperties = {
 
 export default function Home() {
 
-  const router = useRouter();
   const [sessionToken, setSessionToken] = useState<string | undefined>('');
   const [sharedImages, setSharedImages] = useState([]);
   const [currentPostIndex, setCurrentPostIndex] = useState(0); // To track the current post being loaded
 
   useEffect(() => {
-    var token = !localStorage.getItem('sessionToken') ? '' : localStorage.getItem('sessionToken');
-    if (!token) {
-      redirect('/');
-    }
+    var token = !localStorage.getItem('sessionToken') ? null : localStorage.getItem('sessionToken');
     setSessionToken(token?.toString())
   }, [])
 
   useEffect(() => {
+    // get token from local storage
     const token = localStorage.getItem('sessionToken');
 
+    // send get request to api to get all the images/posts
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/images`, { headers: { sessionToken: token } }).then((res) => {
       setSharedImages(res.data);
     }).catch(err => console.log("get all images error", err))
   }, [])
 
   useEffect(() => {
-    // Load posts one by one with a delay of 1 second (adjust as needed)
+    // Load posts one by one with a delay
     const timer = setTimeout(() => {
       if (currentPostIndex < sharedImages.length) {
         setCurrentPostIndex(prevIndex => prevIndex + 1);
@@ -69,7 +66,7 @@ export default function Home() {
           <div className='flex flex-col w-auto h-auto lg:flex-wrap justify-center lg:ml-[260px]'>
             {currentPost.length === 0 && sharedImages.length === 0 && (
               <div className='flex items-center justify-center h-screen lg:w-[40vw] lg:ml-0 '>
-                <ClipLoader color='' loading={true} size={50} cssOverride={override} />
+                <BounceLoader color='#fff' loading={true} size={40}/>
               </div>
             )}
             {currentPost.length === 0 && sharedImages.length > 0 && (
