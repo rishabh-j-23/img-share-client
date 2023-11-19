@@ -60,7 +60,7 @@ const SearchPage = () => {
                 {
                     relevantPosts.length === 0 ? <div className="text-center w-full p-10">No post by that name</div> :
                         relevantPosts.map((post: Post) => {
-                            return <Post id={post._id} key={post._id} image={post.imageData} uploadedBy={post.username} postName={post.postName} />
+                            return <Post id={post._id} key={post._id} uploadedBy={post.username} postName={post.postName} />
                         })
                 }
             </div>
