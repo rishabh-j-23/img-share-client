@@ -10,9 +10,8 @@ import { CSSProperties } from 'react';
 
 type Image = {
   imageData: string,
-  uploadedBy: {
-    username: string
-  },
+  uploadedBy: string,
+  username: string,
   _id: string,
   postName: string,
   description: string
@@ -73,7 +72,7 @@ export default function Home() {
               <div className='flex items-center justify-center h-screen lg:w-[40vw] lg:ml-0'>No posts available.</div>
             )}
             {currentPost.map((image: Image) => (
-              <Post key={image._id} id={image._id} uploadedBy={image.uploadedBy.username} postName={image.postName} description={image.description} />
+              <Post key={image._id} id={image._id} uploadedBy={image.uploadedBy} postName={image.postName} description={image.description} />
             ))}
             <div className='pb-20 lg:pb-0 lg:hidden sm:block opacity-0'>Mobile Nav Padding</div>
           </div>
