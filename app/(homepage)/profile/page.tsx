@@ -57,7 +57,7 @@ const ProfilePage = () => {
                     {
                         userSharedImages.length === 0 ? <div className="text-center w-full p-10">No Images Shared</div> :
                             userSharedImages.map((image: Image) => {
-                                return <Post key={image._id} id={image._id} image={image.imageData} uploadedBy={image.username} postName={image.postName} />
+                                return <Post key={image._id} id={image._id} uploadedBy={image.username} postName={image.postName} />
                             })
                     }
                 </div>
