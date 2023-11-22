@@ -22,8 +22,8 @@ const ProfilePage = () => {
     useEffect(() => {
         var token = localStorage.getItem('sessionToken');
         axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user?token=${token}`, { headers: { sessionToken: localStorage.getItem('sessionToken') } }).then(res => {
-            setUsername(res.data['username']);
-            setEmail(res.data['email']);
+            setUsername(res.data.username);
+            setEmail(res.data.email);
         }).catch(err => console.log(err))
     }, [])
 

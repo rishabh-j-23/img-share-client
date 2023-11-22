@@ -40,6 +40,7 @@ export default function Home() {
     // send get request to api to get all the images/posts
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/images`, { headers: { sessionToken: token } }).then((res) => {
       setSharedImages(res.data);
+      console.log(res.data[1]);
     }).catch(err => console.log("get all images error", err))
   }, [])
 
@@ -72,7 +73,7 @@ export default function Home() {
               <div className='flex items-center justify-center h-screen lg:w-[40vw] lg:ml-0'>No posts available.</div>
             )}
             {currentPost.map((image: Image) => (
-              <Post key={image._id} id={image._id} uploadedBy={image.uploadedBy} postName={image.postName} description={image.description} />
+              <Post key={image._id} id={image._id} uploadedBy={image.username} postName={image.postName} description={image.description} />
             ))}
             <div className='pb-20 lg:pb-0 lg:hidden sm:block opacity-0'>Mobile Nav Padding</div>
           </div>

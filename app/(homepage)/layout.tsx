@@ -3,7 +3,6 @@
 import MobileHeader from "@/components/header/MobileHeader";
 import MobileNavBar from "@/components/navbar/MobileNavBar";
 import SideBar from "@/components/navbar/Sidebar";
-import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const HomeLayout = ({
