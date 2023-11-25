@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { redirect, useRouter } from 'next/navigation';
 import ImageLogo from '@/components/ui/ImageLogo';
+import Link from 'next/link';
 
 const Authpage = () => {
     const router = useRouter();
@@ -20,34 +21,53 @@ const Authpage = () => {
                 <div className='text-3xl text-center font-bold p-2'>
                     <span>Img Share</span>
                 </div>
-                <div className='flex justify-between'>
+                <div className='flex justify-between items-center'>
                     <ImageLogo />
-                    <div>
-                        <div className=' p-5'>
+                    <div className='focus:bg-blue-500'>
+                        <div className='p-5'>
                             <div className='p-6 flex flex-col'>
                                 <span>Already have an account?</span>
-                                <button
-                                    onClick={() => router.push('login')}
-                                    className='
-                                border-solid border-2 m-3 mx-4 rounded-md p-1 px-3 
-                                hover:bg-blue-400 hover:font-bold
-                            '
-                                >
-                                    Login
-                                </button>
+                                <Link href={'/login'}>
+                                    <button
+                                        className='
+                                        border-solid border-2 m-3 mx-4 rounded-md p-1 px-3 
+                                        hover:bg-blue-400 hover:font-bold
+                                        w-full
+                                    '
+                                    >
+                                        Login
+                                    </button>
+                                </Link>
                             </div>
                             <div className='p-6 flex flex-col'>
                                 <span>Don&lsquo;t have an account?</span>
-                                <button
-                                    onClick={() => router.push('/register')}
-                                    className='
-                                border-solid border-2 m-3 mx-4 rounded-md p-1 px-3 
-                                hover:bg-blue-400 hover:font-bold
-                            '
-                                >
-                                    Register
-                                </button>
+                                <Link href={'/register'}>
+                                    <button
+                                        className='
+                                        border-solid border-2 m-3 mx-4 rounded-md p-1 px-3 
+                                        hover:bg-blue-400 hover:font-bold
+                                        w-full
+                                    '
+                                    >
+                                        Register
+                                    </button>
+                                </Link>
                             </div>
+                            <div className='p-6 flex flex-col'>
+                                <span>Don&lsquo;t want to create an account?</span>
+                                <Link href={'/home'}>
+                                    <button
+                                        className='
+                                        border-solid border-2 m-3 mx-4 rounded-md p-1 px-3 
+                                        hover:bg-blue-400 hover:font-bold
+                                        w-full
+                                    '
+                                    >
+                                        Go to Homepage
+                                    </button>
+                                </Link>
+                            </div>
+
                         </div>
                     </div>
                 </div>

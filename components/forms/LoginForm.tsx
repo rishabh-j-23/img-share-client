@@ -32,6 +32,7 @@ const LoginForm = () => {
         }, { headers: { sessionToken: localStorage.getItem('sessionToken') } }).then((res) => {
             if (res.status == 200) {
                 setSessionToken(res.data['sessionToken']);
+                localStorage.setItem('sessionToken', res.data.sessionToken)
                 router.push('/home');
             } else {
                 setCredError(true);

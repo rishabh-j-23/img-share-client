@@ -68,7 +68,8 @@ const RegisterForm = () => {
                                 setCredError(false);
                                 setEmail(event.target.value)
                             }}
-                        />            </div>
+                        />
+                    </div>
                     <div>
                         <label htmlFor="password">Password</label>
                         <input type="password" name="password" id="password" className="border-black border-solid border-2 m-3 mx-4 rounded-md p-1 px-3"

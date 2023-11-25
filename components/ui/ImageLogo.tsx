@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const ImageLogo = () => {
     return (
-        <div className="lg:block hidden border-r-2 w-[300px] h-[300px]">
+        <div className="lg:block hidden w-[300px] h-[300px]">
             <Image
                 src={logoDark}
                 width={900}
