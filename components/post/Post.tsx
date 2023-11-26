@@ -86,7 +86,7 @@ const Post: React.FC<PostProps> = ({
                     </div>
                 </div>
                 {img && (
-                    <div onClick={handlePostClick} className="hover:shadow-md shadow-white">
+                    <div onClick={handlePostClick} className="hover:shadow-md shadow-white" >
                         {/* Post image lg */}
                         <div className="lg:block hidden ml-28">
                             <Image
@@ -95,6 +95,7 @@ const Post: React.FC<PostProps> = ({
                                 className="rounded-md"
                                 width={innerWidth}
                                 height={innerHeight}
+                                loading="lazy"
                                 
                             />
                         </div>
@@ -106,6 +107,7 @@ const Post: React.FC<PostProps> = ({
                                 className="rounded-md w-full h-full"
                                 width={innerWidth}
                                 height={innerHeight}
+                                loading="lazy"
                             />
                         </div>
                     </div>
