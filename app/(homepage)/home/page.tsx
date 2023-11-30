@@ -4,7 +4,7 @@ import Post from '@/components/post/Post'
 
 import axios from 'axios';
 import Image from 'next/image'
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { BounceLoader } from 'react-spinners';
 import { CSSProperties } from 'react';
 
@@ -64,17 +64,25 @@ export default function Home() {
         {/* All post mapping */}
         <div className='h-full w-full'>
           <div className='flex flex-col w-auto h-auto lg:flex-wrap justify-center lg:ml-[260px]'>
-            {currentPost.length === 0 && sharedImages.length === 0 && (
+            {/* {currentPost.length === 0 && sharedImages.length === 0 && (
               <div className='flex items-center justify-center h-screen lg:w-[40vw] lg:ml-0 '>
                 <BounceLoader color='#fff' loading={true} size={40} />
               </div>
-            )}
-            {currentPost.length === 0 && sharedImages.length > 0 && (
-              <div className='flex items-center justify-center h-screen lg:w-[40vw] lg:ml-0'>No posts available.</div>
-            )}
-            {currentPost.map((image: Image) => (
-              <Post key={image._id} id={image._id} uploadedBy={image.username} postName={image.postName} description={image.description} />
-            ))}
+            )} */}
+            <Suspense
+              fallback={
+                <div className='flex items-center justify-center h-screen lg:w-[40vw] lg:ml-0 '>
+                  <BounceLoader color='#fff' loading={true} size={40} />
+                </div>
+              }
+            >
+              {currentPost.length === 0 && sharedImages.length > 0 && (
+                <div className='flex items-center justify-center h-screen lg:w-[40vw] lg:ml-0'>No posts available.</div>
+              )}
+              {currentPost.map((image: Image) => (
+                <Post key={image._id} id={image._id} uploadedBy={image.username} postName={image.postName} description={image.description} />
+              ))}
+            </Suspense>
             <div className='pb-20 lg:pb-0 lg:hidden sm:block opacity-0'>Mobile Nav Padding</div>
           </div>
         </div>
